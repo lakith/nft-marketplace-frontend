@@ -7,6 +7,7 @@ import CollectionCard from "../collection-card/collection-card";
 import {useNavigate} from "react-router-dom";
 import {ICollection, ICollectionResponse} from "../listed-collection/listed-collection";
 import axios from "axios";
+import {NFT_BASE_URL} from "../../constants/constants";
 
 const style = {
     position: 'absolute',
@@ -19,7 +20,7 @@ export default function HomePage() {
     const [collectionList, setCollectionList] = useState<ICollection[]>([]);
 
     useEffect(() => {
-        axios.get<ICollectionResponse>("http://localhost:3500/api/collection/get").then(response => {
+        axios.get<ICollectionResponse>(`${NFT_BASE_URL}/collection/get`).then(response => {
             setCollectionList(response.data.data.collections)
         }).catch(error => {
             console.log(error)

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {Dispatch} from 'redux'
 import { ActionTypes } from './types';
+import {NFT_BASE_URL} from "../constants/constants";
 
 enum UserRole {
     USER = "USER",
@@ -44,7 +45,7 @@ export interface LogoutUserAction {
 export const loginUser = (email: string, password: string) => {
     return async (dispatch: Dispatch) => {
         try{
-            const response = await axios.post<IResponse>(`http://localhost:3500/api/user/login`, {
+            const response = await axios.post<IResponse>(`${NFT_BASE_URL}/user/login`, {
                 password:password,
                 email: email
             })

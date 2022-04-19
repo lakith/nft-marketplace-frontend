@@ -30,7 +30,7 @@ export const createCollection = async (name: string, about: string, imageString:
 
 export const getCollections = async () => {
 
-    axios.get<ICollectionResponse>("http://localhost:3500/api/collection/get").then(response => {
+    axios.get<ICollectionResponse>(`${NFT_BASE_URL}/collection/get`).then(response => {
         return response.data.data.collections
 
     }).catch(error => {

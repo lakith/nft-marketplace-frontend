@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import {listedCollectionPageStyles} from "./listed-collection-styles";
 import CollectionCard from "../collection-card/collection-card";
 import axios from "axios";
+import {NFT_BASE_URL} from "../../constants/constants";
 
 export interface ICollection{
     _id: string,
@@ -28,7 +29,7 @@ export default function ListedCollection() {
     const [collectionList, setCollectionList] = useState<ICollection[]>([]);
 
     useEffect(() => {
-        axios.get<ICollectionResponse>("http://localhost:3500/api/collection/get").then(response => {
+        axios.get<ICollectionResponse>(`${NFT_BASE_URL}/collection/get`).then(response => {
             setCollectionList(response.data.data.collections)
             console.log("response", response.data.data.collections)
             collectionList.forEach(colection => console.log("collection", colection))

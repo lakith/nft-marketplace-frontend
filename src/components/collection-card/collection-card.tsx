@@ -7,6 +7,7 @@ import {NFT} from "../../constants/constants";
 import {useSelector} from "react-redux";
 import {RootStore} from "../../store";
 import axios, {AxiosRequestConfig, AxiosResponse} from "axios";
+import {NFT_BASE_URL} from "../../constants/constants";
 
 interface Props {
     image: string
@@ -40,7 +41,7 @@ export default function CollectionCard(props: Props) {
                     Authorization: loginDatanew.user.token
                 }
             }
-            axios.delete(`http://localhost:3500/api/collection/delete/${id}`, config).then((response: AxiosResponse) => {
+            axios.delete(`${NFT_BASE_URL}/collection/delete/${id}`, config).then((response: AxiosResponse) => {
                 onCollectionDelete(id)
             }).catch(error => {
                 console.log(error)
